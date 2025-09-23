@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Hija de la Luna",
+    "album": "Álbum de Hija de la Luna",
+    "albumImage": "https://i.scdn.co/image/ab67616d0000b273d6b9f65d128ae916d5ad8ae6",
+    "duration": 263,
+    "rating": 5
+  },
+  {
+    "title": "Kyoto",
+    "album": "Single",
+    "albumImage": "https://i.scdn.co/image/ab67616d0000b2739f1fcdc10db2aa3ad1428fe1",
+    "duration": 270,
+    "rating": 5
+  },
+  {
+    "title": "HDMI",
+    "album": "Rotten",
+    "albumImage": "https://i.scdn.co/image/ab67616d00001e02b7873c680671277489987d80",
+    "duration": 139,
+    "rating": 5
+  },
+  {
+    "title": "CAROLINE",
+    "album": "Sleez",
+    "albumImage": "https://images.genius.com/2a5bb06dbb97221b837351f1f76ef301.1000x1000x1.png",
+    "duration": 194,
+    "rating": 4
+  },
+  {
+    "title": "Livin' La Vida Loca",
+    "album": "Ricky Martin",
+    "albumImage": "https://i.scdn.co/image/ab67616d0000b2736715c0346ae35c00762fd999",
+    "duration": 242,
+    "rating": 5
+  }
+]
