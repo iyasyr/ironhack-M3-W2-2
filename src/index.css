@@ -19,6 +19,7 @@ html,
 body,
 #root {
   height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -48,14 +49,6 @@ body {
   max-width: 1100px;
   margin: 0 auto;
   padding: 32px 20px 80px;
-}
-
-.hero {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 20px;
-  align-items: center;
-  margin: 36px 0 28px;
 }
 
 .avatar-wrap {
@@ -202,4 +195,371 @@ h2 {
   text-align: center;
   margin-top: 30px;
   font-size: 14px;
+}
+
+/* ---------- Background layering ---------- */
+.page {
+  position: relative;
+  min-height: 100dvh;
+  isolation: isolate;
+}
+
+.bg-root {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  height: 110vh;
+}
+
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  /* darken edges & add subtle film for readability */
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(0, 0, 0, .55), transparent 55%),
+    radial-gradient(1200px 600px at 80% 110%, rgba(0, 0, 0, .55), transparent 55%),
+    rgba(0, 0, 0, .25);
+}
+
+/* ---------- Layout containers ---------- */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 20px
+}
+
+.home {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 56px;
+  pointer-events: none;
+}
+
+/* above bg & badge */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: transparent
+}
+
+.nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: .4px;
+  margin-left: 16px;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+}
+
+.nav-links a {
+  margin-left: 16px;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px dashed transparent
+}
+
+.nav-links a:hover {
+  border-bottom-color: var(--text)
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  min-height: calc(100dvh - 72px);
+  /* full screen minus nav */
+  display: grid;
+  place-items: center;
+  text-align: center;
+  /* pointer-events: none; */
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(36px, 6vw, 72px);
+  letter-spacing: .4px;
+  line-height: 1.05
+}
+
+.tagline {
+  margin: 8px auto 14px;
+  color: var(--muted);
+  max-width: 720px
+}
+
+.cta-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap
+}
+
+.chip {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid var(--stroke);
+  text-decoration: none;
+  color: var(--text);
+  transition: transform .15s ease, background .15s ease;
+  pointer-events: auto;
+}
+
+.chip:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, .12)
+}
+
+/* ---------- Card ---------- */
+.card {
+  background: var(--glass);
+  border: 1px solid var(--stroke);
+  border-radius: 18px;
+  padding: 18px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width:720px) {
+  .nav-links a {
+    margin-left: 12px
+  }
+
+  .hero {
+    min-height: calc(100dvh - 64px)
+  }
+}
+
+
+.pageHeader {
+  margin-bottom: 24px;
+}
+
+/* --- Cool chips upgrade --- */
+.chips.cool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 8px 0 0;
+}
+
+.chip.cool {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  /* base glass */
+  border: 1px solid var(--stroke);
+  color: var(--text);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18) inset, 0 6px 20px rgba(0, 0, 0, 0.18);
+  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+  will-change: transform;
+}
+
+/* Glow ring that wakes up on hover (uses --c1/--c2 from inline style) */
+.chip.cool::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, var(--c1) 0%, var(--c2) 33%, var(--c1) 66%, var(--c2) 100%);
+  filter: blur(14px);
+  opacity: 0;
+  transition: opacity .22s ease, transform .22s ease;
+  z-index: -1;
+}
+
+.chip.cool:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.10);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.chip.cool:hover::before {
+  opacity: .6;
+  transform: scale(1.03);
+}
+
+.chip-emoji {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.chip-label {
+  letter-spacing: .2px;
+}
+
+/* --- Hobbies gallery --- */
+.hobby-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.hobby-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--stroke);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(6px);
+  transform-style: preserve-3d;
+  transition: box-shadow .22s ease, transform .22s ease;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .22);
+}
+
+.hobby-card:hover {
+  box-shadow: 0 14px 36px rgba(0, 0, 0, .32);
+}
+
+.hobby-img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+@media (min-width: 900px) {
+  .hobby-img {
+    height: 220px;
+  }
+}
+
+/* Gradient fallback (if no imageUrl) */
+.hobby-fallback {
+  width: 100%;
+  height: 200px;
+  background: radial-gradient(circle at 20% 10%, var(--c1), transparent 60%),
+    radial-gradient(circle at 80% 90%, var(--c2), transparent 60%),
+    linear-gradient(135deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02));
+}
+
+@media (min-width: 900px) {
+  .hobby-fallback {
+    height: 220px;
+  }
+}
+
+/* Readability shade */
+.hobby-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, .55), rgba(0, 0, 0, .15) 50%, transparent);
+  pointer-events: none;
+}
+
+/* Text block */
+.hobby-body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 14px 14px 12px;
+}
+
+.hobby-title {
+  margin: 0 0 6px;
+  font-size: 18px;
+  letter-spacing: .2px;
+}
+
+.hobby-desc {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+/* ===== Clean pulsating 404 (CSS-only) ===== */
+.container.not-found {
+  position: relative;
+  min-height: calc(100dvh - 72px);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding-block: 56px;
+  color: var(--muted);
+  font-size: clamp(18px, 2.2vw, 22px);
+  letter-spacing: .25px;
+  isolation: isolate;
+  /* keeps pseudos in this stack */
+  z-index: 5;
+  /* above your background */
+}
+
+/* Big gradient “404” behind the text, gently pulsing */
+.container.not-found::before {
+  content: "404";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: -1;
+  /* behind the foreground text, but above bg */
+  font-weight: 800;
+  font-size: clamp(120px, 22vw, 360px);
+  line-height: .9;
+
+  /* gradient text */
+  background: linear-gradient(135deg, var(--accent), #9a7bff 50%, #48e6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  /* soft glow */
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, .35));
+  will-change: transform, opacity, filter;
+
+  /* pulse */
+  animation: pulseGlow 2.8s ease-in-out infinite;
+}
+
+/* optional: subtle vignette (static) */
+.container.not-found::after {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(1000px 420px at 50% 0%, rgba(0, 0, 0, .5), transparent 60%),
+    radial-gradient(1000px 420px at 50% 100%, rgba(0, 0, 0, .5), transparent 60%);
+  opacity: .28;
+}
+
+/* keyframes: gentle scale + glow pulse */
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: .85;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, .35)) blur(0);
+  }
+
+  50% {
+    transform: scale(1.03);
+    opacity: 1;
+    filter: drop-shadow(0 18px 42px rgba(0, 0, 0, .45)) blur(1px);
+  }
+}
+
+/* mobile tweak */
+@media (max-width:720px) {
+  .container.not-found {
+    min-height: calc(100dvh - 64px);
+  }
 }

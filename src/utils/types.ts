@@ -5,3 +5,9 @@ export type Song = {
   duration: number;
   rating: number;
 };
+
+export type Hobby = {
+  title: string;
+  description: string;
+  imageUrl?: string; // optional, falls back to a gradient
+};
