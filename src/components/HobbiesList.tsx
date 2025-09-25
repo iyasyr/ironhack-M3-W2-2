@@ -1,4 +1,3 @@
-// src/components/Hobbies.tsx
 import { motion } from "framer-motion";
 import type { CSSProperties } from "react";
 import type { Hobby } from "../utils/types";
@@ -9,10 +8,6 @@ const gridVar = {
   hidden: {},
   show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } }
 };
-// const cardVar = {
-//   hidden: { opacity: 0, y: 12, scale: 0.98 },
-//   show:   { opacity: 1, y: 0,  scale: 1,    transition: { duration: 0.4, ease: [0.22,1,0.36,1] } }
-// };
 
 function hueFromString(str: string) {
   let h = 0;
@@ -35,12 +30,11 @@ export default function Hobbies({ items = [] }: Props) {
           <motion.article
             key={i}
             className="hobby-card"
-            // variants={cardVar}
             whileHover={{ y: -4, rotateX: 2, rotateY: -2 }}
             whileTap={{ scale: 0.99 }}
             style={style}
           >
-            {/* Image (or gradient fallback) */}
+            {/* Image or gradient fallback */}
             {h.imageUrl ? (
               <img className="hobby-img" src={h.imageUrl} alt={h.title} />
             ) : (
