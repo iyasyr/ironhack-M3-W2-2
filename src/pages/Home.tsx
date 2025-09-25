@@ -19,6 +19,8 @@ export default function Home() {
           <motion.div {...fadeUp} className="cta-row">
             <Link className="chip" to="/hobbies">Go to Hobbies</Link>
             <Link className="chip" to="/music">Go to Music</Link>
+            <Link className="chip" to="/contact">Contact Me</Link>
+            <Link className="chip" to="/posts">Test Api</Link>
           </motion.div>
         </section>
 

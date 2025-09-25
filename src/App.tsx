@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import HobbiesPage from "./pages/Hobbies";
 import MusicPage from "./pages/Music";
 import ContactPage from "./pages/Contact";
+import PostsPage from "./pages/PostsPage";
 
 function Layout() {
   return (
@@ -16,6 +17,7 @@ function Layout() {
             <Link to="/hobbies">Hobbies</Link>
             <Link to="/music">Music</Link>
             <Link to="/contact">Contact</Link>
+            <Link to="/posts">Posts API</Link>
           </nav>
         </div>
       </header>
@@ -33,10 +35,7 @@ export default function App() {
         <Route path="hobbies" element={<HobbiesPage />} />
         <Route path="music" element={<MusicPage />} />
         <Route path="contact" element={<ContactPage />} />
-        {/* Later:
-        <Route path="contact" element={<div className="container">TODO: Contact form</div>} />
-        <Route path="posts" element={<div className="container">TODO: Load from jsonplaceholder</div>} />
-        */}
+        <Route path="posts" element={<PostsPage />} />
         <Route path="*" element={<div className="container not-found">404 Not Found</div>} />
 
       </Route>
